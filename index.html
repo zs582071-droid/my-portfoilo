@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zahid Shah | Frontend Developer — Landing Pages &amp; Business Websites</title>
+    <meta name="description" content="Professional Frontend Developer offering landing pages, business websites, and Figma-to-code services. View portfolio work and hire through Fiverr." />
+    <meta name="keywords" content="frontend developer, landing pages, business websites, responsive web design, Figma to code, Tailwind CSS" />
+    <meta name="author" content="Zahid Shah" />
+    <meta property="og:title" content="Zahid Shah | Frontend Developer" />
+    <meta property="og:description" content="Professional frontend development services—landing pages, business websites, and pixel-perfect Figma implementations." />
+    <meta property="og:type" content="website" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deep: '#0f172a',
+                        navy: '#1e293b',
+                        accent: '#6366f1',
+                        purple: '#8b5cf6',
+                        glow: '#a78bfa',
+                    },
+                    animation: {
+                        'glow-pulse': 'glow-pulse 2.5s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'glow-pulse': {
+                            '0%, 100%': { opacity: '1', boxShadow: '0 0 20px rgba(139, 92, 246, 0.4)' },
+                            '50%': { opacity: '0.9', boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <style>
+        html { scroll-behavior: smooth; }
+        .gradient-wave { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 70%, #1e293b 100%); }
+        .gradient-glow { background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa); }
+        .text-gradient { background: linear-gradient(135deg, #a78bfa, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .btn-glow { box-shadow: 0 0 30px rgba(139, 92, 246, 0.5); transition: all 0.3s ease; }
+        .btn-glow:hover { box-shadow: 0 0 50px rgba(139, 92, 246, 0.7), 0 0 80px rgba(99, 102, 241, 0.3); transform: scale(1.02); }
+        .nav-blur { backdrop-filter: blur(12px); background: rgba(15, 23, 42, 0.85); }
+        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+        @media (min-width: 768px) { .section-padding { padding-top: 6rem; padding-bottom: 6rem; } }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 41, 59, 0.9);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+        .project-card__image-wrap {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .project-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .project-card:hover .project-card__image {
+            transform: scale(1.05);
+        }
+        .project-card__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, #0f172a, transparent);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .project-card__body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 1.25rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .project-card__title {
+            font-weight: 700;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+        .project-card:hover .project-card__title {
+            background: linear-gradient(135deg, #a78bfa, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .project-card__desc {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        .project-card__actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        @media (min-width: 480px) {
+            .project-card__actions {
+                flex-direction: row;
+            }
+        }
+        .project-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex: 1;
+            min-height: 44px;
+            padding: 0.625rem 1rem;
+            border-radius: 0.75rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        @media (min-width: 1280px) {
+            .project-btn {
+                font-size: 0.875rem;
+            }
+        }
+        .project-btn-demo {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+        }
+        .project-btn-demo:hover {
+            opacity: 0.95;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.55);
+            transform: translateY(-1px);
+        }
+        .hire-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1.25rem 2.5rem;
+            border-radius: 1rem;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.55), 0 0 80px rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+            animation: glow-pulse 2.5s ease-in-out infinite;
+        }
+        .hire-cta:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 60px rgba(139, 92, 246, 0.75), 0 0 100px rgba(99, 102, 241, 0.35);
+        }
+    </style>
+</head>
+<body class="bg-deep text-slate-200 antialiased min-h-screen">
+    <header class="fixed top-0 left-0 right-0 z-50 nav-blur border-b border-white/5 transition-all duration-300">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <a href="#home" class="flex items-center gap-2 font-bold text-lg text-white hover:text-glow transition">
+                    <span class="w-9 h-9 rounded-lg gradient-glow flex items-center justify-center">
+                        <i class="fas fa-code text-white text-sm"></i>
+                    </span>
+                    Zahid Shah
+                </a>
+                <ul class="hidden md:flex items-center gap-8">
+                    <li><a href="#home" class="text-slate-300 hover:text-white font-medium transition">Home</a></li>
+                    <li><a href="#about" class="text-slate-300 hover:text-white font-medium transition">About</a></li>
+                    <li><a href="#projects" class="text-slate-300 hover:text-white font-medium transition">Projects</a></li>
+                    <li><a href="#services" class="text-slate-300 hover:text-white font-medium transition">Services</a></li>
+                    <li><a href="#contact" class="text-slate-300 hover:text-white font-medium transition">Hire Me</a></li>
+                </ul>
+                <button type="button" id="menu-toggle" class="md:hidden p-2 rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition touch-manual" aria-label="Open menu">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-deep/98 backdrop-blur-xl">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#home" class="block py-4 px-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium transition touch-manual">Home</a>
+                <a href="#about" class="block py-4 px-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium transition touch-manual">About</a>
+                <a href="#projects" class="block py-4 px-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium transition touch-manual">Projects</a>
+                <a href="#services" class="block py-4 px-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium transition touch-manual">Services</a>
+                <a href="#contact" class="block py-4 px-4 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white font-medium transition touch-manual">Hire Me</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+            <div class="absolute inset-0 gradient-wave"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-deep/80 via-deep/60 to-deep"></div>
+            <div class="absolute top-1/4 right-0 w-96 h-96 bg-purple/20 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 left-0 w-80 h-80 bg-accent/20 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div>
+                        <p class="text-purple-300 font-medium mb-4 flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+                            Frontend Developer
+                        </p>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                            Crafting polished web experiences with <span class="text-gradient">precision</span>.
+                        </h1>
+                        <p class="text-lg sm:text-xl text-slate-400 max-w-xl leading-relaxed mb-8">
+                            I design and build fast, responsive interfaces—landing pages, portfolios, and business websites engineered for clarity, performance, and results.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#projects" class="inline-flex items-center justify-center gap-2 gradient-glow text-white px-8 py-4 rounded-xl font-semibold btn-glow hover:opacity-95">
+                                View My Work <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a id="hero-fiverr-cta" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 border border-white/15 bg-white/5 hover:bg-white/10 text-white px-8 py-4 rounded-xl font-semibold transition">
+                                Hire Me on Fiverr <i class="fas fa-briefcase"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="relative flex justify-center lg:justify-end">
+                        <div class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl shadow-purple/20 bg-navy/60">
+                            <img id="hero-img" src="../zahid shah portfoilo/images/HERO..JPG.JPG" alt="Zahid Shah - Frontend Developer" class="w-full h-full object-cover" />
+                            <div id="hero-fallback" class="hidden w-full h-full flex items-center justify-center">
+                                <div class="text-center">
+                                    <div class="w-24 h-24 rounded-2xl gradient-glow mx-auto flex items-center justify-center mb-4 shadow-xl shadow-purple/20">
+                                        <span class="text-3xl font-extrabold text-white">ZS</span>
+                                    </div>
+                                    <p class="text-white font-semibold">Zahid Shah</p>
+                                    <p class="text-slate-400 text-sm mt-1">Frontend Developer</p>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep/60 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding relative bg-navy/50">
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(99,102,241,0.03)_50%,transparent_100%)] pointer-events-none"></div>
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <div>
+                        <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">About Me</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-6">
+                            Turning ideas into clean, high-performance <span class="text-gradient">interfaces</span>.
+                        </h2>
+                        <p class="text-slate-400 leading-relaxed mb-6">
+                            I’m a frontend developer focused on clarity, speed, and detail. Every layout is structured for readability, every interaction feels intentional, and every build is optimized for real users on real devices.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed mb-8">
+                            From concept to launch, I deliver responsive websites with strong visual hierarchy, accessible markup, and maintainable code—aligned with your brand and business goals.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-purple-400"></i>
+                                Pixel-perfect, mobile-first design
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-purple-400"></i>
+                                Performance-focused development
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-300">
+                                <i class="fas fa-check-circle text-purple-400"></i>
+                                Clean, scalable, production-ready code
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="relative">
+                        <div class="aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-deep/30 flex items-center justify-center">
+                            <img id="about-img" src="images/about.jpg" alt="About Zahid Shah" class="w-full h-full object-cover" />
+                            <div id="about-fallback" class="hidden p-10 text-center">
+                                <div class="w-16 h-16 rounded-xl gradient-glow mx-auto flex items-center justify-center mb-4">
+                                    <i class="fas fa-user text-white text-xl"></i>
+                                </div>
+                                <p class="text-white font-semibold">Zahid Shah</p>
+                                <p class="text-slate-400 text-sm mt-1">Frontend Developer</p>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-navy border border-white/10 rounded-xl px-6 py-4 shadow-xl">
+                            <span class="text-2xl font-bold text-gradient">Design → Code</span>
+                            <p class="text-slate-500 text-sm mt-1">Built for real users</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding relative bg-deep">
+            <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple/50 to-transparent"></div>
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">What I Offer</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Services</h2>
+                    <p class="text-slate-400">End-to-end frontend solutions tailored to your brand and objectives.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="group bg-navy/80 border border-white/10 rounded-2xl p-8 hover:border-purple/30 hover:shadow-lg hover:shadow-purple/10 transition-all duration-300">
+                        <div class="w-14 h-14 rounded-xl gradient-glow flex items-center justify-center mb-6 group-hover:scale-105 transition">
+                            <i class="fas fa-bolt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Landing Pages</h3>
+                        <p class="text-slate-400 leading-relaxed">Conversion-focused pages with clear messaging, strong CTAs, and layouts engineered for mobile and desktop.</p>
+                    </div>
+                    <div class="group bg-navy/80 border border-white/10 rounded-2xl p-8 hover:border-purple/30 hover:shadow-lg hover:shadow-purple/10 transition-all duration-300">
+                        <div class="w-14 h-14 rounded-xl gradient-glow flex items-center justify-center mb-6 group-hover:scale-105 transition">
+                            <i class="fas fa-layer-group text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Business Websites</h3>
+                        <p class="text-slate-400 leading-relaxed">Multi-section sites for brands and agencies—structured navigation, trust-building design, and consistent visual identity.</p>
+                    </div>
+                    <div class="group bg-navy/80 border border-white/10 rounded-2xl p-8 hover:border-purple/30 hover:shadow-lg hover:shadow-purple/10 transition-all duration-300">
+                        <div class="w-14 h-14 rounded-xl gradient-glow flex items-center justify-center mb-6 group-hover:scale-105 transition">
+                            <i class="fab fa-figma text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Figma to Code</h3>
+                        <p class="text-slate-400 leading-relaxed">Pixel-perfect implementation with semantic HTML, Tailwind CSS, and optimized assets ready for production.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-padding relative bg-navy/30">
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Selected Work</h2>
+                    <p class="text-slate-400">Recent builds showcasing design, performance, and attention to detail.</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <!-- Project 1 -->
+                    <article class="project-card">
+                        <div class="project-card__image-wrap">
+                            <img src="images/project1.jpg" alt="Brand Landing Page screenshot" class="project-card__image" />
+                            <div class="project-card__overlay"></div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Brand Landing Page</h3>
+                            <p class="project-card__desc">Marketing &amp; lead generation</p>
+                            <div class="project-card__actions">
+                                <a href="https://live-demo-link.com/brand-landing-page" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-demo">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card">
+                        <div class="project-card__image-wrap">
+                            <img src="images/project2.jpg" alt="Corporate Website screenshot" class="project-card__image" />
+                            <div class="project-card__overlay"></div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Corporate Website</h3>
+                            <p class="project-card__desc">Multi-page business presence</p>
+                            <div class="project-card__actions">
+                                <a href="https://live-demo-link.com/corporate-website" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-demo">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card">
+                        <div class="project-card__image-wrap">
+                            <img src="images/project3.jpg" alt="Creative Portfolio screenshot" class="project-card__image" />
+                            <div class="project-card__overlay"></div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Creative Portfolio</h3>
+                            <p class="project-card__desc">Showcase &amp; case studies</p>
+                            <div class="project-card__actions">
+                                <a href="https://live-demo-link.com/creative-portfolio" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-demo">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-card">
+                        <div class="project-card__image-wrap">
+                            <img src="images/project4.jpg" alt="Product Dashboard UI screenshot" class="project-card__image" />
+                            <div class="project-card__overlay"></div>
+                        </div>
+                        <div class="project-card__body">
+                            <h3 class="project-card__title">Product Dashboard UI</h3>
+                            <p class="project-card__desc">Component system &amp; layout</p>
+                            <div class="project-card__actions">
+                                <a href="https://live-demo-link.com/product-dashboard-ui" target="_blank" rel="noopener noreferrer" class="project-btn project-btn-demo">
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                    View Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section-padding relative bg-deep">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.06)_0%,transparent_70%)] pointer-events-none"></div>
+            <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">Tech Stack</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Skills & Technologies</h2>
+                    <p class="text-slate-400">Modern tools for production-ready frontends.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fab fa-html5 text-orange-400 text-2xl"></i><span class="font-semibold text-white">HTML</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fab fa-css3-alt text-blue-400 text-2xl"></i><span class="font-semibold text-white">CSS</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fab fa-js text-yellow-400 text-2xl"></i><span class="font-semibold text-white">JavaScript</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fab fa-react text-cyan-400 text-2xl"></i><span class="font-semibold text-white">React</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fas fa-wind text-sky-400 text-2xl"></i><span class="font-semibold text-white">Tailwind CSS</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-navy/80 border border-white/10 rounded-xl px-6 py-4 hover:border-purple/30 transition">
+                        <i class="fas fa-gauge-high text-purple-400 text-2xl"></i><span class="font-semibold text-white">Performance</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding relative overflow-hidden">
+            <div class="absolute inset-0 gradient-wave"></div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-purple/20 rounded-full blur-3xl"></div>
+            <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="text-purple-400 font-semibold text-sm uppercase tracking-wider">Work With Me</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-2 mb-6">Ready to start your project?</h2>
+                <p class="text-slate-300 text-lg leading-relaxed mb-4">
+                    I deliver landing pages, business websites, and Figma-to-code builds with a focus on performance and polish.
+                </p>
+                <p class="text-slate-400 mb-10">
+                    All project inquiries and orders are handled securely through Fiverr.
+                </p>
+
+                <div class="bg-navy/80 border border-white/10 rounded-2xl p-8 sm:p-12 shadow-2xl shadow-purple/10">
+                    <div class="w-16 h-16 rounded-2xl gradient-glow mx-auto flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-2">Availability</p>
+                    <p class="text-white font-semibold text-lg mb-8">Open for freelance projects</p>
+                    <a id="hire-fiverr-cta" href="#" target="_blank" rel="noopener noreferrer" class="hire-cta">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        Hire Me on Fiverr
+                    </a>
+                    <p class="text-slate-500 text-sm mt-8 max-w-md mx-auto">
+                        Click above to view my services, packages, and reviews on Fiverr.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-navy border-t border-white/5 py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="text-slate-500 text-sm">© <span id="year"></span> Zahid Shah. Frontend Developer.</p>
+            <a id="footer-fiverr-cta" href="#" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white text-sm font-medium transition">
+                Hire Me on Fiverr <i class="fas fa-external-link-alt text-xs ml-1"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Update this URL to your Fiverr profile
+        const FIVERR_PROFILE = 'https://www.fiverr.com/your_username';
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('#mobile-menu a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        ['hero-fiverr-cta', 'hire-fiverr-cta', 'footer-fiverr-cta'].forEach(function (id) {
+            const el = document.getElementById(id);
+            if (el) el.href = FIVERR_PROFILE;
+        });
+
+        function imageFallback(imgId, fallbackId) {
+            const img = document.getElementById(imgId);
+            const fallback = document.getElementById(fallbackId);
+            if (!img || !fallback) return;
+            img.addEventListener('error', function () {
+                img.classList.add('hidden');
+                fallback.classList.remove('hidden');
+                fallback.classList.add('flex');
+            });
+        }
+        imageFallback('hero-img', 'hero-fallback');
+        imageFallback('about-img', 'about-fallback');
+    </script>
+</body>
+</html>
